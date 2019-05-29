@@ -39,7 +39,7 @@ void process_image_callback(const sensor_msgs::Image img)
       bool is_white = true;
       int num_channels = img.step/img.width;
       for (int channel=0; is_white && channel<num_channels; ++channel)
-	if (img.data[row*img.step+col*num_channels] != white_pixel)
+	if (img.data[row*img.step+col*num_channels+channel] != white_pixel)
 	  is_white = false;
 
       if (!is_white)
