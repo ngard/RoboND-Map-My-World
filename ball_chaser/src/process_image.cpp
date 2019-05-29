@@ -36,13 +36,13 @@ void process_image_callback(const sensor_msgs::Image img)
   for (int row=0; row<img.height && location == NOT_FOUND; ++row) {
     for (int col=0; col<img.width && location == NOT_FOUND; ++col) {
   // TODO: Loop through each pixel in the image and check if there's a bright white one
-      bool is_while = true;
+      bool is_white = true;
       int num_channels = img.step/img.width;
-      for (int channel=0; is_while && channel<num_channels; ++channel)
+      for (int channel=0; is_white && channel<num_channels; ++channel)
 	if (img.data[row*img.step+col*num_channels] != white_pixel)
-	  is_while = false;
+	  is_white = false;
 
-      if (!is_while)
+      if (!is_white)
 	continue;
   // Then, identify if this pixel falls in the left, mid, or right side of the image
 
